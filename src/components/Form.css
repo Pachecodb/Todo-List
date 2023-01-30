@@ -1,0 +1,24 @@
+
+.was-validated{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: auto;
+}
+.ex1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ex1>h3{
+   word-break: break-word;
+   width: 50%;
+}
+
+.form-control{
+    width: 50% !important;
+}
+

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import '././Form.css';
 
 const getListaTarefas = () => {
     let list = localStorage.getItem('lista_tarefas')
@@ -64,13 +65,13 @@ const Form = () => {
 
     return (
 
-        <div className="App" >
-            <div >
+        <div className="App">
                 <div>
-                    <h1> Lista de tarefas</h1>
+                    <h1> Todo-List</h1>
+                    <p>Gerencie sua tarefas!</p>
                     <form className="was-validated" >
                         <input type="text" className="form-control" placeholder="Digite a tarefa" value={listaTarefas}
-                            onChange={(e) => setListaTarefas(e.target.value)} autoFocus required />
+                            onChange={(e) => setListaTarefas(e.target.value)}  required />
                         <div className="valid-feedback">Valid.</div>
                         <div className="invalid-feedback">Por favor insira a tarefa</div>
                         {
@@ -78,13 +79,13 @@ const Form = () => {
                         }
                     </form>
                 </div>
-                <div>
+                <div >
                     {
                         tarefa.map((value) => {
                             return (
                                 <div className="ex1" key={value.id}>
-                                    <h3>{value.name}</h3>
-                                    <div>
+                                    <h3 className="h3">{value.name}</h3>
+                                    <div >
                                         <button type="button" className="btn btn-danger" onClick={() => deleteTarefa(value.id)}>Excluir</button>
                                         <button type="button" className="btn btn-warning" onClick={() => editTarefa(value.id)}>Editar</button>
                                     </div>
@@ -93,7 +94,7 @@ const Form = () => {
                         })
                     }
                 </div>
-            </div>
+            
         </div>
     );
 };

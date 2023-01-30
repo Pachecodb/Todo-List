@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Router>
-          <Form />
+        <Form />
       </Router>
       <Footer />
     </>
