@@ -1,11 +1,14 @@
 .footer {
   background-color: #222;
   color: #fff;
-  padding: 3em;
+  padding: 1em;
   text-align: center;
   display: block;
-  
+  height: 100px;
+  width: 100%;
+  bottom: 0;
 }
+.position-relative {position: relative}
 
 .social_list {
   display: flex;

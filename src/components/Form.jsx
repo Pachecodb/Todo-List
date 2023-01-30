@@ -74,20 +74,19 @@ const Form = () => {
                         <div className="valid-feedback">Valid.</div>
                         <div className="invalid-feedback">Por favor insira a tarefa</div>
                         {
-                            toggleSubmit ? <button type="button" className="btn btn-outline-success" onClick={addTarefa}>Adicionar</button> : <button type="button" className="btn btn-outline-success" onClick={addTarefa}>Adicionar Tarefa Editada</button>
+                            toggleSubmit ? <button type="button" className="btn btn-success" onClick={addTarefa}>Adicionar</button> : <button type="button" className="btn btn-success" onClick={addTarefa}>Adicionar Tarefa Editada</button>
                         }
                     </form>
                 </div>
                 <div>
-
                     {
                         tarefa.map((value) => {
                             return (
-                                <div key={value.id}>
+                                <div className="ex1" key={value.id}>
                                     <h3>{value.name}</h3>
                                     <div>
-                                        <button type="button" className="btn btn-outline-danger" onClick={() => deleteTarefa(value.id)}>Excluir</button>
-                                        <button type="button" className="btn btn-outline-warning" onClick={() => editTarefa(value.id)}>Editar</button>
+                                        <button type="button" className="btn btn-danger" onClick={() => deleteTarefa(value.id)}>Excluir</button>
+                                        <button type="button" className="btn btn-warning" onClick={() => editTarefa(value.id)}>Editar</button>
                                     </div>
                                 </div>
                             )

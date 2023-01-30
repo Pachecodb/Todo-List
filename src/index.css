@@ -1,21 +1,14 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
 }
 
-body{
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-html{
-  height: 100%;
-  min-height: 100%;
-}
-#root{
-  background-color: #efefef;
-  height: 100%;
-}
