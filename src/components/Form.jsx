@@ -44,8 +44,8 @@ const Form = () => {
             setIsEditItem(null)
         } else {
             if (listaTarefas.trim()) {
-                const todasListaTarefas = { id: new Date().getTime().toString(), name: listaTarefas }
-                setTarefa([...tarefa, todasListaTarefas])
+                const todaListaTarefas = { id: new Date().getTime().toString(), name: listaTarefas }
+                setTarefa([...tarefa, todaListaTarefas])
                 setListaTarefas('')
 
             }
@@ -57,8 +57,17 @@ const Form = () => {
             return index !== value.id
         });
         setTarefa(deleteTarefa);
+        console.log(deleteTarefa);
     };
 
+    const modalConfirmacao = (index) => {
+        let mostrarNoModal = tarefa.find((value) => {
+            return index == value.id
+        });
+        handleShow();
+        setListaTarefas(mostrarNoModal.name)
+        console.log(mostrarNoModal.name);
+    }
 
     const editTarefa = (id) => {
         let newEditItem = tarefa.find((value) => {
@@ -70,22 +79,19 @@ const Form = () => {
     };
 
     return (
-
         <div className="App">
             <div>
                 <h1> Todo-List</h1>
                 <p>Gerencie sua tarefas!</p>
                 <form className="was-validated" >
                     <input type="text" className="form-control" placeholder="Digite a tarefa" value={listaTarefas}
-                        onChange={(e) => setListaTarefas(e.target.value)} autofocus required />
+                        onChange={(e) => setListaTarefas(e.target.value)} autoFocus required />
                     <div className="valid-feedback">Valid.</div>
                     <div className="invalid-feedback">Por favor insira a tarefa</div>
                     {
                         toggleSubmit ? <button type="button" className="btn btn-success" onClick={addTarefa}>Adicionar</button> : <button type="button" className="btn btn-primary" onClick={addTarefa}>Salvar Tarefa Editada</button>
                     }
-                    <Button variant="danger" onClick={handleShow}>
-                        Excluir
-                    </Button>
+
                 </form>
             </div>
             <div >
@@ -94,8 +100,9 @@ const Form = () => {
                         return (
                             <div className="ex1" key={value.id}>
                                 <h3 className="h3">{value.name}</h3>
-                                <div >
+                                <div>
                                     <button type="button" className="btn btn-warning" onClick={() => editTarefa(value.id)}>Editar</button>
+                                    <button type="button" className="btn btn-danger" onClick={() => modalConfirmacao(value.id)} >Excluir</button>
                                 </div>
                             </div>
                         )
@@ -104,26 +111,16 @@ const Form = () => {
             </div>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Excluir Tarefas</Modal.Title>
+                    <Modal.Title>Voce realmente deseja excluir esta tafera? Essa açao sera ireversivel!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {
-                        tarefa.map((value) => {
-                            return (
-                                <div key={value.id}>
-                                    <h3 >{value.name}</h3>
-                                    <div >
-                                        <button type="button" className="btn btn-danger" onClick={() => deleteTarefa(value.id)} >Excluir</button>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
+                    <div>
+                        <p>Tarefa: {tarefa.name}</p>
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
+                    <Button variant="secondary" onClick={handleClose}>Close</Button>
+                    <button type="button" className="btn btn-danger" onClick={() => deleteTarefa()} >Excluir</button>
                 </Modal.Footer>
             </Modal>
         </div>
