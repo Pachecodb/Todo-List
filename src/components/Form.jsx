@@ -20,8 +20,8 @@ const Form = () => {
     const [toggleSubmit, setToggleSubmit] = useState(true);
     const [isEditItem, setIsEditItem] = useState(null);
     const [show, setShow] = useState(false);
-    const [mostrarNoModal, setMostrarNoModal] = useState({title: '', name: ''});
-    
+    const [mostrarNoModal, setMostrarNoModal] = useState({ name: '' });
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -52,14 +52,14 @@ const Form = () => {
             }
         }
     }
-    // deleta elemento selecionado da lsita
-        const deleteTarefa = (index) => {
-            const deleteTarefa = tarefa.filter((value) => {
-                return index !== value.id
-            });
-            setListaTarefas(deleteTarefa);
-            handleClose();
-        };
+
+    const deleteTarefa = (index) => {
+        const deleteTarefa = tarefa.filter((value) => {
+            return index !== value.id
+        });
+        setTarefa(deleteTarefa);
+        handleClose();
+    };
 
     const modalConfirmacao = (index) => {
         let modal = tarefa.find((value) => {
@@ -115,12 +115,12 @@ const Form = () => {
                 </Modal.Header>
                 <Modal.Body>
                     <div>
-                        <p>Tarefa: {mostrarNoModal.name}</p>
+                        <h3> {mostrarNoModal.name}</h3>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
-                    <button type="button" className="btn btn-danger" onClick={() => deleteTarefa()} >Excluir</button>
+                    <button type="button" className="btn btn-danger" onClick={() => deleteTarefa(mostrarNoModal.id)} >Excluir</button>
                 </Modal.Footer>
             </Modal>
         </div>
