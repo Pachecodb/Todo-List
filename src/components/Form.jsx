@@ -20,7 +20,8 @@ const Form = () => {
     const [toggleSubmit, setToggleSubmit] = useState(true);
     const [isEditItem, setIsEditItem] = useState(null);
     const [show, setShow] = useState(false);
-
+    const [mostrarNoModal, setMostrarNoModal] = useState({title: '', name: ''});
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -52,21 +53,20 @@ const Form = () => {
         }
     }
     // deleta elemento selecionado da lsita
-    const deleteTarefa = (index) => {
-        const deleteTarefa = tarefa.filter((value) => {
-            return index !== value.id
-        });
-        setTarefa(deleteTarefa);
-        console.log(deleteTarefa);
-    };
+        const deleteTarefa = (index) => {
+            const deleteTarefa = tarefa.filter((value) => {
+                return index !== value.id
+            });
+            setListaTarefas(deleteTarefa);
+            handleClose();
+        };
 
     const modalConfirmacao = (index) => {
-        let mostrarNoModal = tarefa.find((value) => {
-            return index == value.id
+        let modal = tarefa.find((value) => {
+            return index === value.id
         });
         handleShow();
-        setListaTarefas(mostrarNoModal.name)
-        console.log(mostrarNoModal.name);
+        setMostrarNoModal(modal);
     }
 
     const editTarefa = (id) => {
@@ -111,11 +111,11 @@ const Form = () => {
             </div>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Voce realmente deseja excluir esta tafera? Essa açao sera ireversivel!</Modal.Title>
+                    <Modal.Title>Voce realmente deseja excluir esta tafera? Essa ação sera ireversivel!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
-                        <p>Tarefa: {tarefa.name}</p>
+                        <p>Tarefa: {mostrarNoModal.name}</p>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
